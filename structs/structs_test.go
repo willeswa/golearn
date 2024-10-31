@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -38,11 +39,18 @@ func TestStructs(t *testing.T){
 	}
 
 	for _, tt := range areaStructs {
-		checkArea(t, tt.shape, tt.want)
+		testCase := fmt.Sprintf("calculate area of shape %#v", tt.shape)
+		t.Run(testCase, func(t *testing.T) {
+			checkArea(t, tt.shape, tt.want)
+		})
 	}
 	
 	for _, tt := range perimeterStructs {
-		checkPerimeter(t, tt.shape, tt.want)
+		testCase := fmt.Sprintf("calculate perimeter of shape %#v", tt.shape)
+
+		t.Run(testCase, func(t *testing.T) {
+			checkPerimeter(t, tt.shape, tt.want)
+		})
 	}
 
 }
